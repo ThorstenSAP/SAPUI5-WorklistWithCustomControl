@@ -38,20 +38,20 @@ sap.ui.define([
 						"details": [{
 							"id" : "a1ebd01a-0ecf-4a06-8d11-f791142d6100",
 							"Done": false,
-							"Description": "Get to know UI5",
-							"DueDate": "2019-12-31, 00:00"
+							"Description": "Get to know UI5 / Fiori / CAP",
+							"DueDate": "14.02.2020, 00:00:00"
 						},
 						{
 							"id": "a1ebd01a-0ecf-4a06-8d11-f791142d6101",
 							"Done": true,
 							"Description": "meet colleagues",
-							"DueDate": "2019-11-30, 00:00"
+							"DueDate": "30.11.2010, 00:00:00"
 						},
 						{
 							"id": "a1ebd01a-0ecf-4a06-8d11-f791142d6102",
 							"Done": true,
 							"Description": "Learn mac",
-							"DueDate": "2019-11-22, 00:00"
+							"DueDate": "22.11.2019, 00:00:00"
 						}]
 					},
 					{
@@ -61,7 +61,7 @@ sap.ui.define([
 							"id" : "a1ebd01a-0ecf-4a06-8d11-f791142d6200",
 							"Done": false,
 							"Description": "Find a shared flat",
-							"DueDate": "2019-11-30, 00:00"
+							"DueDate": "30.11.2020, 00:00:00"
 						}]
 					},
 					{
@@ -71,7 +71,7 @@ sap.ui.define([
 							"id": "a1ebd01a-0ecf-4a06-8d11-f791142d6300",
 							"Done": true,
 							"Description": "Style up",
-							"DueDate": "2019-11-30, 00:00"
+							"DueDate": "30.11.2020, 00:00:00"
 						}]
 					}
 				]
