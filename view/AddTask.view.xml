@@ -33,9 +33,9 @@
                         <Input id="taskDescription" type="Text"  placeholder="Task description" />
 
                         <Label text="Due Date" />
-                        <DatePicker 
+                        <DateTimePicker 
                                 id="taskDueDate"
-                                valueFormat="yyyy-MM-dd"
+                                valueFormat="dd.MM.yyyy, HH:mm:SS"
                                 displayFormat="long"
                             />
                     </f:content>

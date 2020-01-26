@@ -9,6 +9,7 @@
 
 .Strikethrough * {
     text-decoration: line-through;
+    border: 1px solid green;
 }
 .LateAssignment {
     border: 1px solid red;

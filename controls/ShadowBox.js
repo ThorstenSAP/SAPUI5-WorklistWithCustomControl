@@ -50,11 +50,21 @@ sap.ui.define([
             setSelected: function(bSelected){
                 this.getAggregation("_checkbox").setSelected(bSelected);
                 
-                //if checkbox is selected strike and disable the input field
+                //if checkbox is selected strike and disable the input field and the DateTimePicker
                 if (this.getAggregation("_checkbox").getProperty("selected")){
                     this.getAggregation("_input").addStyleClass("Strikethrough");
+                    this.getAggregation("_dueDate").addStyleClass("Strikethrough");
+                    this.getAggregation("_dueDate").removeStyleClass("LateAssignment");
                 } else {
+                    //if the checkbox is not selected the input field and the DateTimePicker are not strikethrough
                     this.getAggregation("_input").removeStyleClass("Strikethrough");
+                    this.getAggregation("_dueDate").removeStyleClass("Strikethrough");
+                    //and check if the date is in the past or in the present and add the corresponding styles
+                    if (this._dueDateValidation(this.getAggregation("_dueDate").getDateValue())){
+                        this.getAggregation("_dueDate").removeStyleClass("LateAssignment");
+                    } else {
+                        this.getAggregation("_dueDate").addStyleClass("LateAssignment");
+                    }
                 }
                 return this.setProperty("selected", bSelected, true);
             },
@@ -64,8 +74,15 @@ sap.ui.define([
             },
             setDate: function(dDate){
                 this.getAggregation("_dueDate").setValue(dDate);
-                //check if the Date is behind the current date and change the Style
-                if (this._dueDateValidation(this.getAggregation("_dueDate").getDateValue())){
+                //check if the Date is behind the current date and if the checkbox is selected (task is solved)
+                // -> no style for the DateTimePicker
+                if (!this._dueDateValidation(this.getAggregation("_dueDate").getDateValue()) &&
+                    this.getAggregation("_checkbox").getProperty("selected") ){
+                        this.getAggregation("_input").addStyleClass("Strikethrough");
+                        this.getAggregation("_dueDate").addStyleClass("Strikethrough");
+                        this.getAggregation("_dueDate").removeStyleClass("LateAssignment");
+                //check if the Date is in the past or the future and add the corresponding style
+                } else if (this._dueDateValidation(this.getAggregation("_dueDate").getDateValue())){
                     this.getAggregation("_dueDate").removeStyleClass("LateAssignment");
                 } else {
                     this.getAggregation("_dueDate").addStyleClass("LateAssignment");
