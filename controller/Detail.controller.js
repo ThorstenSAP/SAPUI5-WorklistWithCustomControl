@@ -1,11 +1,10 @@
 sap.ui.define(
   [
     "./BaseController",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/core/routing/History",
+    "sap/m/MessageToast",
     "mycompany/myapp/MyWorklistApp/model/formatter"
   ],
-  function(BaseController, JSONModel, History, formatter) {
+  function(BaseController, MessageToast, formatter) {
     "use strict";
     
     //=========Class Variables=======================
@@ -118,12 +117,10 @@ sap.ui.define(
           //Get the the ID of the task and iterate over the array (JSON Model) to find the correct index of the task
           //aTasks = this.getModel("DataModel").getProperty("/tasks");
           let result;
-          for (var i = 0; i < aTasks.length; i++) {
-            if (iID == aTasks[i].id) {
-              result = i;
-              break;
-            }
-          }
+          aTasks.forEach(function(element, index){
+            if (iID == element.id)
+              result = index;
+          });
           return result;
         },
 
@@ -138,34 +135,10 @@ sap.ui.define(
 
 
 
+
         /*=================================
           Manipulate Data
         =================================*/
-
-        
-        deleteTask: function(oEvent){
-          let detailsArray, deleteIndex, detailsID;
-
-          //use the class Variable taskIndex to get the corresponding array within the specific object
-          detailsArray = this.getModel("DataModel").getProperty("/tasks/" + taskIndex + "/details");
-          detailsID = oEvent.getSource().getBindingContext("DataModel").getObject().id;
-          //detect the index, which will be deleted
-          deleteIndex = this._getIndex(detailsArray, detailsID);
-          
-          var oContext = oEvent.getSource().getBindingContext("DataModel");
-          var oModel = oContext.getModel("DataModel");
-          var sPath = "/tasks/" + taskIndex + "/details";
-          var aDetails = oModel.getProperty(sPath);
-
-
-
-          //delete one entry at the index 'deleteIndex'
-          aDetails.splice(deleteIndex,1);
-          //update the model and then store the data in the localstorage
-          oModel.setProperty(sPath, aDetails);
-          this.saveToLocalStorage(oModel);        
-
-        },
 
         saveEdit: function(oEvent){
           this.toggleEditMode();
@@ -179,10 +152,33 @@ sap.ui.define(
           oModel.setProperty(sPath, aDetails);
           this.saveToLocalStorage(oModel);
 
+          MessageToast.show("Data will be saved to the local webstorage");
         },
 
+        /*=================================
+          Obsolete / learning sample function
+        =================================*/        
+        deleteTask: function(oEvent){
+          let detailsArray, deleteIndex, detailsID;
 
-        sortStatusDone: function (oEvent){
+          //use the class Variable taskIndex to get the corresponding array within the specific object
+          detailsArray = this.getModel("DataModel").getProperty("/tasks/" + taskIndex + "/details");
+          detailsID = oEvent.getSource().getBindingContext("DataModel").getObject().id;
+          //detect the index, which will be deleted
+          deleteIndex = this._getIndex(detailsArray, detailsID);
+          
+          let oContext = oEvent.getSource().getBindingContext("DataModel");
+          let oModel = oContext.getModel("DataModel");
+          let sPath = "/tasks/" + taskIndex + "/details";
+          let aDetails = oModel.getProperty(sPath);
+
+
+
+          //delete one entry at the index 'deleteIndex'
+          aDetails.splice(deleteIndex,1);
+          //update the model and then store the data in the localstorage
+          oModel.setProperty(sPath, aDetails);
+          this.saveToLocalStorage(oModel);        
 
         }
 

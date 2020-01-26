@@ -84,6 +84,7 @@ sap.ui.define([
 			oLocalStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 
 			//check if the app is tested in chrome or firefox and set the stored data in regards to the browser
+			//Chrome
 			if(!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)){
 				//Get data from Storage if available
 				if(oLocalStorage.get("tasks")) {
@@ -92,9 +93,10 @@ sap.ui.define([
 				} else {
 					//otherwise set the initial data into the local storage and then load the data into the model Data
 					oLocalStorage.put("tasks", JSON.stringify(tasks));
-					Data.setProperty("/tasks", tasks);
+					Data.setProperty("/", tasks);
 
 				}
+			//Firefox
 			} else if (typeof InstallTrigger !== 'undefined') {
 				//Get data from Storage if available
 				if(oLocalStorage.get("tasks")) {

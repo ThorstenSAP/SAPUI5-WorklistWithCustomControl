@@ -37,16 +37,15 @@ sap.ui.define(
 			});
         },
         
-        _getIndex: function(iID){
+
+          _getIndex: function(iID){
             //Get the the ID of the task and iterate over the array (JSON Model) to find the correct index of the task
             let tasks = this.getModel("DataModel").getProperty("/tasks");
             let result;
-            for (let i = 0; i < tasks.length; i++) {
-              if (iID == tasks[i].id) {
-                result = i;
-                break;
-              }
-            }
+            tasks.forEach(function(element, index){
+              if (iID == element.id)
+                result = index;
+            });
             return result;
           },
 
