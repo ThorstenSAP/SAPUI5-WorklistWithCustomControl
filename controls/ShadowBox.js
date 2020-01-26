@@ -1,13 +1,11 @@
 sap.ui.define([
     'sap/ui/core/Control',
-    "sap/m/Label",
     "sap/m/CheckBox",
     "sap/m/Input",
-    "sap/m/DateTimePicker",
-    "sap/m/Button"
+    "sap/m/DateTimePicker"
 
     ],
-    function(Control, Label, CheckBox, Input, DateTimePicker, Button) {
+    function(Control, CheckBox, Input, DateTimePicker) {
         "use strict"
         return Control.extend("mycompany.myapp.MyWorklistApp.containers.ShadowBox", {
             metadata:{
