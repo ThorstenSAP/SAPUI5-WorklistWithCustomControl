@@ -1,0 +1,23 @@
+<mvc:View
+	controllerName="mycompany.myapp.MyWorklistApp.controller.Worklist"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic">
+
+	<semantic:SemanticPage
+		id="page"
+		class="page">
+		
+		<semantic:content>
+			<List items="{DataModel>/tasks}" id="list">
+				<StandardListItem title="{DataModel>name}"  
+								type="Navigation"
+								press="onListItemPress"/>
+			</List>
+		</semantic:content>
+
+
+
+	</semantic:SemanticPage>
+
+</mvc:View>

@@ -1,0 +1,53 @@
+<mvc:View
+	controllerName="mycompany.myapp.MyWorklistApp.controller.AddTask"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic"
+    xmlns:f="sap.ui.layout.form">
+
+
+
+	<semantic:SemanticPage
+		id="AddTask"
+		class="page" >
+
+        <semantic:titleHeading>
+            <Title text="{DataModel>Description}" />
+        </semantic:titleHeading>
+		
+		<semantic:content>
+            <VBox>
+                <f:SimpleForm id="addTaskForm"
+                    editable="true"
+                    title="add Task">
+                    
+                    <f:toolbar>
+                        <Toolbar id="addTaskToolbar">
+                            <ToolbarSpacer />
+                            <Button type="Reject" text="cancel" press="cancelAddTask"/>
+                            <Button type="Accept" text="save" press="saveAddTask"/>
+                        </Toolbar> 
+                    </f:toolbar>
+                    <f:content>
+                        <Label text="Description" />
+                        <Input id="taskDescription" type="Text"  placeholder="Task description" />
+
+                        <Label text="Due Date" />
+                        <DatePicker 
+                                id="taskDueDate"
+                                valueFormat="yyyy-MM-dd"
+                                displayFormat="long"
+                            />
+                    </f:content>
+
+                </f:SimpleForm>
+
+
+            </VBox>
+        </semantic:content>
+
+
+
+	</semantic:SemanticPage>
+
+</mvc:View>
