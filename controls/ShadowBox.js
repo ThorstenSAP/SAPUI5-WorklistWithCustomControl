@@ -74,14 +74,14 @@ sap.ui.define([
             },
             setDate: function(dDate){
                 this.getAggregation("_dueDate").setValue(dDate);
-                //check if the Date is behind the current date and if the checkbox is selected (task is solved)
+                //if the Date is behind the current date and if the checkbox is selected (task is solved)
                 // -> no style for the DateTimePicker
-                if (!this._dueDateValidation(this.getAggregation("_dueDate").getDateValue()) &&
+                if (! this._dueDateValidation(this.getAggregation("_dueDate").getDateValue()) &&
                     this.getAggregation("_checkbox").getProperty("selected") ){
                         this.getAggregation("_input").addStyleClass("Strikethrough");
                         this.getAggregation("_dueDate").addStyleClass("Strikethrough");
                         this.getAggregation("_dueDate").removeStyleClass("LateAssignment");
-                //check if the Date is in the past or the future and add the corresponding style
+                //if the Date is in the past or the future and add the corresponding style
                 } else if (this._dueDateValidation(this.getAggregation("_dueDate").getDateValue())){
                     this.getAggregation("_dueDate").removeStyleClass("LateAssignment");
                 } else {
@@ -133,6 +133,7 @@ sap.ui.define([
             /* =========================================================== */            
             _dueDateValidation: function (dDueDate){
                 //due Date will be in specific time zone
+                //returns true if the date is in the future and false if it is in the past
                 var currentDate = new Date();
                 var dueDate =  dDueDate
                 if(dueDate != undefined){
