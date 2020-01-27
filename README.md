@@ -5,4 +5,7 @@
     - The custom control has the following functionalaties. 
         - It checks if the due date of a task is in the past or in the future and will mark the field if the due date is in the past.
         - Also it will check if a task is solved or not and add the corresponding styles. 
+        
+## Construction zone
+- By refreshing the application it may happen that the app wants to use a deep linking (which is not yet implemented) -> in this case just delete the locale storage and restart the app
 
